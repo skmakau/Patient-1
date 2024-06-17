@@ -131,6 +131,7 @@ form {
 .video-section {
     flex: 1;
     min-width: 200px;
+    margin-bottom: 20px;
 }
 
 .video-gif {
@@ -210,4 +211,18 @@ input[type="text"] {
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #4caf50;
+}
+
+.scale-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.scale-item {
+    background: #f4f4f9;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: justify;
+    border: 1px solid #ccc;
 }
