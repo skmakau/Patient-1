@@ -130,7 +130,7 @@ form {
 
 .video-section {
     flex: 1;
-    min-width: 200px;
+    min-width: 250px;
     margin-bottom: 20px;
 }
 
@@ -198,7 +198,7 @@ input[type="text"] {
 
 .legend {
     flex: 1;
-    min-width: 200px;
+    min-width: 250px;
     background: #e9f5e9;
     color: #333;
     padding: 15px;
@@ -211,6 +211,9 @@ input[type="text"] {
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #4caf50;
+    padding: 5px;
+    border: 1px solid #4caf50;
+    border-radius: 5px;
 }
 
 .scale-list {
