@@ -80,7 +80,7 @@ body > .main-content {
 
 .main-content {
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     padding: 100px 20px 20px 20px;
     background: #fff;
     border-radius: 10px;
@@ -126,7 +126,7 @@ form {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: flex-start;
 }
 
