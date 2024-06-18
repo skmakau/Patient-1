@@ -31,7 +31,7 @@ body > .main-content {
     align-items: center;
     width: 100%;
     padding: 10px 20px;
-    background: #008060; /* Green color from Steadiwear website */
+    background: rgb(35, 45, 63); /* Color matched to Steadiwear top banner */
     color: #ffffff;
     position: fixed;
     top: 0;
@@ -132,7 +132,7 @@ form {
     margin-bottom: 20px;
 }
 
-.video-gif {
+.video-thumbnail {
     width: 100%; /* Ensure the video takes up the full width of the container */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -240,7 +240,7 @@ input[type="text"] {
 .footer {
     width: 100%;
     padding: 20px;
-    background: #00509e; /* Blue color from Steadiwear website */
+    background: #1e2d38; /* Color matched to Steadiwear bottom footer */
     color: #fff;
     text-align: center;
     margin-top: auto;
