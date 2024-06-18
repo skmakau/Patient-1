@@ -123,9 +123,9 @@ form {
 
 .video-group-row {
     display: flex;
-    justify-content: space-between;
     gap: 20px;
-    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 .video-section {
