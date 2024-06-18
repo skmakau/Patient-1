@@ -1,6 +1,6 @@
 /* General Styling */
 body {
-    font-family: 'Garamond', serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
     color: #333;
     margin: 0;
@@ -219,13 +219,17 @@ input[type="text"] {
 .scale-list {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    padding-left: 0;  /* Remove default list padding */
 }
 
 .scale-item {
     background: #f4f4f9;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
-    text-align: justify;
+    text-align: left;
     border: 1px solid #ccc;
+    font-size: 0.9em;
+    color: #555;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
