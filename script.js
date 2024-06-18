@@ -73,7 +73,7 @@ document.addEventListener("scroll", function() {
 
     sections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        if (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
             found = true;
             const scaleType = section.getAttribute("data-scale");
             updateLegend(scaleType);
@@ -132,3 +132,4 @@ function updateLegend(scaleType) {
         `;
     }
 }
+
