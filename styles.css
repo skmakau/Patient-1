@@ -21,6 +21,7 @@ body > .main-content {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     overflow-y: auto;
+    text-align: center; /* Center the heading */
 }
 
 /* Top Ribbon Styling */
@@ -30,7 +31,7 @@ body > .main-content {
     align-items: center;
     width: 100%;
     padding: 10px 20px;
-    background: #6c757d;
+    background: #008060; /* Green color from Steadiwear website */
     color: #ffffff;
     position: fixed;
     top: 0;
@@ -48,7 +49,7 @@ body > .main-content {
 
 .logo-button {
     display: inline-block;
-    background: #333;
+    background: transparent; /* Transparent background to show the logo */
     color: #fff;
     padding: 5px 10px;
     border-radius: 10px;
@@ -58,14 +59,15 @@ body > .main-content {
 }
 
 .logo-steadi {
-    color: #fff;
-    font-size: 1.5em;
-    margin-right: 5px;
+    display: none; /* Hide text-based logo */
 }
 
 .logo-wear {
-    color: #4caf50;
-    font-size: 1.5em;
+    display: none; /* Hide text-based logo */
+}
+
+.logo-image {
+    width: 150px; /* Adjust size as needed */
 }
 
 .hover-text {
@@ -90,6 +92,7 @@ h1 {
     font-size: 2.5em;
     margin: 20px 0 10px 0;
     color: #4caf50;
+    text-align: center; /* Center the heading */
 }
 
 h2 {
@@ -237,7 +240,7 @@ input[type="text"] {
 .footer {
     width: 100%;
     padding: 20px;
-    background: #6c757d;
+    background: #00509e; /* Blue color from Steadiwear website */
     color: #fff;
     text-align: center;
     margin-top: auto;
