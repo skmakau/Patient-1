@@ -1,79 +1,80 @@
-function toggleLegend(legendId) {
-    const legend = document.getElementById(legendId);
-    if (legend.style.display === 'none' || legend.style.display === '') {
-        legend.style.display = 'block';
-    } else {
-        legend.style.display = 'none';
-    }
-}
 
-document.getElementById('surveyForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    // Validate the form manually to ensure all required fields are filled
-    const form = document.getElementById('surveyForm');
-    const requiredFields = form.querySelectorAll('input[required]');
-    let allFieldsFilled = true;
-
-    // Check each group of radio buttons
-    const radioGroups = [...new Set([...form.querySelectorAll('input[type="radio"]')].map(radio => radio.name))];
-
-    radioGroups.forEach(group => {
-        const radioButtons = form.querySelectorAll(`input[name="${group}"]`);
-        const isChecked = Array.from(radioButtons).some(radio => radio.checked);
-        if (!isChecked) {
-            allFieldsFilled = false;
-            // Set focus on the first radio button of the group
-            form.querySelector(`input[name="${group}"]`).focus();
+    function toggleLegend(legendId) {
+        const legend = document.getElementById(legendId);
+        if (legend.style.display === 'none' || legend.style.display === '') {
+            legend.style.display = 'block';
+        } else {
+            legend.style.display = 'none';
         }
-    });
-
-    // Check other required fields
-    requiredFields.forEach(field => {
-        if (!field.value) {
-            allFieldsFilled = false;
-            field.focus();
-        }
-    });
-
-    if (!allFieldsFilled) {
-        alert('Please fill out all ratings before submitting.');
-        return;
     }
 
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
+    document.getElementById('surveyForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Validate the form manually to ensure all required fields are filled
+        const form = document.getElementById('surveyForm');
+        const requiredFields = form.querySelectorAll('input[required]');
+        let allFieldsFilled = true;
+
+        // Check each group of radio buttons
+        const radioGroups = [...new Set([...form.querySelectorAll('input[type="radio"]')].map(radio => radio.name))];
+
+        radioGroups.forEach(group => {
+            const radioButtons = form.querySelectorAll(`input[name="${group}"]`);
+            const isChecked = Array.from(radioButtons).some(radio => radio.checked);
+            if (!isChecked) {
+                allFieldsFilled = false;
+                // Set focus on the first radio button of the group
+                form.querySelector(`input[name="${group}"]`).focus();
+            }
+        });
+
+        // Check other required fields
+        requiredFields.forEach(field => {
+            if (!field.value) {
+                allFieldsFilled = false;
+                field.focus();
+            }
+        });
+
+        if (!allFieldsFilled) {
+            alert('Please fill out all ratings before submitting.');
+            return;
+        }
+
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        fetch('https://script.google.com/macros/s/AKfycbwomoDP-ACMAfEdpBlv0Oy3q8wWNFGTTXw3iO94jKeIQ8yzFMn-7SqVwT4ggm1CXq5M9Q/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Thank you for your ratings!');
+            window.close();
+        })
+        .catch((error) => {
+            console.error('Submission error:', error);
+            alert('Thank you for your ratings!');
+            window.close();
+        });
     });
 
-    fetch('https://script.google.com/macros/s/AKfycbwomoDP-ACMAfEdpBlv0Oy3q8wWNFGTTXw3iO94jKeIQ8yzFMn-7SqVwT4ggm1CXq5M9Q/exec', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'text/plain',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Thank you for your ratings!');
-        window.close();
-    })
-    .catch((error) => {
-        console.error('Submission error:', error);
-        alert('Thank you for your ratings!');
-        window.close();
-    });
-});
+    document.addEventListener("scroll", function() {
+        const legend = document.getElementById("legend");
+        const sections = document.querySelectorAll(".video-group");
+        let found = false;
 
-document.addEventListener("scroll", function() {
-    const legend = document.getElementById("legend");
-    const sections = document.querySelectorAll(".video-group");
-    let found = false;
-
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
             found = true;
             const scaleType = section.getAttribute("data-scale");
             updateLegend(scaleType);
@@ -132,4 +133,5 @@ function updateLegend(scaleType) {
         `;
     }
 }
+
 
