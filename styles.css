@@ -127,11 +127,12 @@ form {
 
 .video-group-container {
     display: flex;
+    flex-direction: row; /* Ensure items are laid out in a row */
     justify-content: space-between;
     gap: 20px;
-    flex-wrap: nowrap;
     align-items: flex-start;
 }
+
 
 .video-section {
     flex: 1;
