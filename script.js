@@ -66,4 +66,69 @@ document.getElementById('surveyForm').addEventListener('submit', function(event)
     });
 });
 
+document.addEventListener("scroll", function() {
+    const legend = document.getElementById("legend");
+    const sections = document.querySelectorAll(".video-group");
+    let found = false;
 
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)) {
+            found = true;
+            const scaleType = section.getAttribute("data-scale");
+            updateLegend(scaleType);
+        }
+    });
+
+    legend.style.display = found ? "block" : "none";
+});
+
+function updateLegend(scaleType) {
+    const legend = document.getElementById("legend");
+    const legendTitle = document.getElementById("legend-title");
+    const scaleList = document.getElementById("scale-list");
+
+    // Clear the current scale items
+    while (scaleList.firstChild) {
+        scaleList.removeChild(scaleList.firstChild);
+    }
+
+    // Add new scale items based on the scaleType
+    if (scaleType === "tremor") {
+        legendTitle.innerText = "Tremor Scale";
+        scaleList.innerHTML = `
+            <div class="scale-item">0 = Normal</div>
+            <div class="scale-item">1 = Slight (amplitude <0.5 cm). May be intermittent.</div>
+            <div class="scale-item">2 = Moderate amplitude (0.5-1 cm). May be intermittent.</div>
+            <div class="scale-item">3 = Marked amplitude (1-2 cm).</div>
+            <div class="scale-item">4 = Severe amplitude (>2 cm).</div>
+        `;
+    } else if (scaleType === "pouring") {
+        legendTitle.innerText = "Pouring Scale";
+        scaleList.innerHTML = `
+            <div class="scale-item">0 = No tremor</div>
+            <div class="scale-item">1 = Slight tremor, not affecting pouring</div>
+            <div class="scale-item">2 = Moderate tremor, some difficulty pouring</div>
+            <div class="scale-item">3 = Marked tremor, significant difficulty pouring</div>
+            <div class="scale-item">4 = Severe tremor, unable to pour</div>
+        `;
+    } else if (scaleType === "drinking") {
+        legendTitle.innerText = "Drinking Scale";
+        scaleList.innerHTML = `
+            <div class="scale-item">0 = No tremor</div>
+            <div class="scale-item">1 = Slight tremor, not affecting drinking</div>
+            <div class="scale-item">2 = Moderate tremor, some difficulty drinking</div>
+            <div class="scale-item">3 = Marked tremor, significant difficulty drinking</div>
+            <div class="scale-item">4 = Severe tremor, unable to drink</div>
+        `;
+    } else if (scaleType === "spiral") {
+        legendTitle.innerText = "Spiral Scale";
+        scaleList.innerHTML = `
+            <div class="scale-item">0 = No tremor</div>
+            <div class="scale-item">1 = Slight tremor, not affecting spiral drawing</div>
+            <div class="scale-item">2 = Moderate tremor, some difficulty drawing spiral</div>
+            <div class="scale-item">3 = Marked tremor, significant difficulty drawing spiral</div>
+            <div class="scale-item">4 = Severe tremor, unable to draw spiral</div>
+        `;
+    }
+}
