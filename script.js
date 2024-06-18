@@ -68,13 +68,13 @@
     });
 
     document.addEventListener("scroll", function() {
-        const legend = document.getElementById("legend");
-        const sections = document.querySelectorAll(".video-group");
-        let found = false;
+    const legend = document.getElementById("legend");
+    const sections = document.querySelectorAll(".video-group");
+    let found = false;
 
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
             found = true;
             const scaleType = section.getAttribute("data-scale");
             updateLegend(scaleType);
@@ -133,5 +133,6 @@ function updateLegend(scaleType) {
         `;
     }
 }
+
 
 
