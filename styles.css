@@ -115,7 +115,7 @@ form {
     margin-bottom: 20px;
 }
 
-.video-group-container {
+.video-group-row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
