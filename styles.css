@@ -27,7 +27,7 @@ body > .main-content {
 /* Top Ribbon Styling */
 .top-bar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 10px 20px;
@@ -42,56 +42,26 @@ body > .main-content {
 
 .logo-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-right: 20px;
 }
 
-.logo-button {
-    display: inline-block;
-    background: transparent; /* Transparent background to show the logo */
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 10px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
+.title-container {
+    flex-grow: 1;
+    text-align: center;
 }
 
-.logo-steadi {
-    display: none; /* Hide text-based logo */
-}
-
-.logo-wear {
-    display: none; /* Hide text-based logo */
-}
-
-.logo-image {
-    width: 150px; /* Adjust size as needed */
-}
-
-.hover-text {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #fff;
-    opacity: 0;
-    transition: opacity 0.3s;
-    white-space: nowrap;
-    background-color: #333;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.logo-button:hover .hover-text {
-    opacity: 1;
+.page-title {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin: 0;
 }
 
 h1 {
     font-size: 2.5em;
     margin: 20px 0 10px 0;
-    color: #4caf50;
+    color: rgb(35, 45, 63); /* Color matched to Steadiwear top banner */
     text-align: center; /* Center the heading */
 }
 
@@ -132,7 +102,7 @@ form {
     margin-bottom: 20px;
 }
 
-.video-gif {
+.video-thumbnail {
     width: 100%; /* Ensure the video takes up the full width of the container */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
