@@ -133,6 +133,3 @@ function updateLegend(scaleType) {
         `;
     }
 }
-
-
-
