@@ -22,6 +22,7 @@ width: 100%; /* Ensure it spans full width */
 position: sticky; /* Make it sticky */
 top: 0; /* Stick to the top */
 z-index: 1000; /* Ensure it is above other elements */
+text-align: center;
 }
 
 .logo-container {
@@ -62,7 +63,7 @@ text-align: center;
 
 /* General Styling */
 h1 {
-    font-size: 2.5em;
+    font-size: 3.5em;
     margin: 20px 0 10px 0;
     color: rgb(35, 45, 63); /* Color matched to Steadiwear top banner */
     text-align: center;
