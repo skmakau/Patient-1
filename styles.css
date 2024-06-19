@@ -146,7 +146,7 @@ input[type="text"] {
 }
 
 .submit-btn {
-    background: #4caf50;
+    background: rgb(35, 45, 63);
     color: #fff;
     border: none;
     padding: 10px 20px;
