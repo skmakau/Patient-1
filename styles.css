@@ -19,6 +19,9 @@ background-color: rgb(35, 45, 63);
 padding: 10px 20px;
 color: white;
 width: 100%; /* Ensure it spans full width */
+position: sticky; /* Make it sticky */
+top: 0; /* Stick to the top */
+z-index: 1000; /* Ensure it is above other elements */
 }
 
 .logo-container {
@@ -54,7 +57,7 @@ border-radius: 10px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 margin-top: 20px;
 overflow-y: auto;
-align-items: center;
+text-align: center;
 }
 
 /* General Styling */
