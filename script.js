@@ -111,6 +111,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 <div class="scale-item">3 = Marked amplitude (1-2 cm).</div>
                 <div class="scale-item">4 = Severe amplitude (>2 cm).</div>
             `;
+        } else if (scaleType === "pouring") {
+            legendTitle.innerText = "Pouring Scale";
+            scaleList.innerHTML = `
+                <div class="scale-item">0 = No tremor</div>
+                <div class="scale-item">1 = Slight tremor, not affecting pouring</div>
+                <div class="scale-item">2 = Moderate tremor, some difficulty pouring</div>
+                <div class="scale-item">3 = Marked tremor, significant difficulty pouring</div>
+                <div class="scale-item">4 = Severe tremor, unable to pour</div>
+            `;
         } else if (scaleType === "drinking") {
             legendTitle.innerText = "Drinking Scale";
             scaleList.innerHTML = `
