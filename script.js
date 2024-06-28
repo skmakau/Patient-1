@@ -1,94 +1,99 @@
-
-    function toggleLegend(legendId) {
-        const legend = document.getElementById(legendId);
-        if (legend.style.display === 'none' || legend.style.display === '') {
-            legend.style.display = 'block';
-        } else {
-            legend.style.display = 'none';
-        }
+function toggleLegend(legendId) {
+    const legend = document.getElementById(legendId);
+    if (legend.style.display === 'none' || legend.style.display === '') {
+        legend.style.display = 'block';
+    } else {
+        legend.style.display = 'none';
     }
+}
 
-    document.getElementById('surveyForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+document.getElementById('surveyForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-        // Validate the form manually to ensure all required fields are filled
-        const form = document.getElementById('surveyForm');
-        const requiredFields = form.querySelectorAll('input[required]');
-        let allFieldsFilled = true;
+    // Validate the form manually to ensure all required fields are filled
+    const form = document.getElementById('surveyForm');
+    const requiredFields = form.querySelectorAll('input[required]');
+    let allFieldsFilled = true;
 
-        // Check each group of radio buttons
-        const radioGroups = [...new Set([...form.querySelectorAll('input[type="radio"]')].map(radio => radio.name))];
+    // Check each group of radio buttons
+    const radioGroups = [...new Set([...form.querySelectorAll('input[type="radio"]')].map(radio => radio.name))];
 
-        radioGroups.forEach(group => {
-            const radioButtons = form.querySelectorAll(`input[name="${group}"]`);
-            const isChecked = Array.from(radioButtons).some(radio => radio.checked);
-            if (!isChecked) {
-                allFieldsFilled = false;
-                // Set focus on the first radio button of the group
-                form.querySelector(`input[name="${group}"]`).focus();
-            }
-        });
-
-        // Check other required fields
-        requiredFields.forEach(field => {
-            if (!field.value) {
-                allFieldsFilled = false;
-                field.focus();
-            }
-        });
-
-        if (!allFieldsFilled) {
-            alert('Please fill out all ratings before submitting.');
-            return;
+    radioGroups.forEach(group => {
+        const radioButtons = form.querySelectorAll(`input[name="${group}"]`);
+        const isChecked = Array.from(radioButtons).some(radio => radio.checked);
+        if (!isChecked) {
+            allFieldsFilled = false;
+            // Set focus on the first radio button of the group
+            form.querySelector(`input[name="${group}"]`).focus();
         }
-
-        const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-
-        fetch('https://script.google.com/macros/s/AKfycbzUa99dBB4TtuH8BMfQ44EoHnHMLHfRRRkT4Ks0pnyx1RqYcg4S5-zUkLcSuFvtzeklRA/exec', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'text/plain',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Thank you for your ratings!');
-            window.close();
-        })
-        .catch((error) => {
-            console.error('Submission error:', error);
-            alert('Thank you for your ratings!');
-            window.close();
-        });
     });
 
+    // Check other required fields
+    requiredFields.forEach(field => {
+        if (!field.value) {
+            allFieldsFilled = false;
+            field.focus();
+        }
+    });
+
+    if (!allFieldsFilled) {
+        alert('Please fill out all ratings before submitting.');
+        return;
+    }
+
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    fetch('https://script.google.com/macros/s/AKfycbzUa99dBB4TtuH8BMfQ44EoHnHMLHfRRRkT4Ks0pnyx1RqYcg4S5-zUkLcSuFvtzeklRA/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Thank you for your ratings!');
+        window.close();
+    })
+    .catch((error) => {
+        console.error('Submission error:', error);
+        alert('Thank you for your ratings!');
+        window.close();
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function() {
+    // Initially set the legend to the tremor scale
+    updateLegend("tremor");
+    const legend = document.getElementById("legend");
+    legend.style.display = "block";
+
     document.addEventListener("scroll", function() {
-        const legend = document.getElementById("legend");
-        const sections = document.querySelectorAll(".video-group");
-        const submitButton = document.querySelector(".submit-btn");
+        const radioGroups = document.querySelectorAll('.rating-scale');
         let found = false;
 
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
+        radioGroups.forEach(radioGroup => {
+            const rect = radioGroup.getBoundingClientRect();
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
                 found = true;
-                const scaleType = section.getAttribute("data-scale");
+                const parentGroup = radioGroup.closest('.video-group');
+                const scaleType = parentGroup.getAttribute("data-scale");
                 updateLegend(scaleType);
             }
         });
 
-        const submitButtonRect = submitButton.getBoundingClientRect();
-        if (submitButtonRect.top <= window.innerHeight && submitButtonRect.bottom >= 0) {
-            found = false; // Hide legend if the submit button is in view
+        if (found) {
+            legend.style.display = "block";
+        } else if (window.scrollY === 0) {
+            updateLegend("tremor");
+            legend.style.display = "block";
+        } else {
+            legend.style.display = "none";
         }
-
-        legend.style.display = found ? "block" : "none";
     });
 
     function updateLegend(scaleType) {
